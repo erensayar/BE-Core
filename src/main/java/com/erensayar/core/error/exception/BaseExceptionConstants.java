@@ -1,7 +1,6 @@
 package com.erensayar.core.error.exception;
 
-// Default Errors. They can be override.
-public final class ExceptionConstants {
+public final class BaseExceptionConstants {
 
     static final String ERROR_CODE = "0000";
     static final String ERROR_MESSAGE = "Error!";
@@ -20,10 +19,15 @@ public final class ExceptionConstants {
     static final String UNAUTHORIZED_ERROR_MESSAGE            = "Unauthorized";
     static final String FORBIDDEN_ERROR_CODE                  = "0007";
     static final String FORBIDDEN_ERROR_MESSAGE               = "Forbidden";
-    public static final String VALIDATION_ERROR_CODE          = "0008";
-    public static final String VALIDATION_ERROR_MESSAGE       = "Not Valid Error";
+    static final String NO_CONTENT_CODE                       = "0008";
+    static final String NO_CONTENT_MESSAGE                    = "No Content";
     static final String OK_CODE                               = "0009";
-    static final String OK_MESSAGE                            = "Checked but something is wrong";
+    static final String OK_MESSAGE                            = "OK";
+    static final String TOO_MANY_REQUEST_CODE                 = "0010";
+    static final String TOO_MANY_REQUEST_MESSAGE              = "Too Many Request";
 
+    // Global
+    public static final String VALIDATION_ERROR_CODE          = "2001";
+    public static final String VALIDATION_ERROR_MESSAGE       = "Not Valid Error";
 
 }

@@ -1,12 +1,31 @@
 package com.erensayar.core.error.model;
 
+import java.time.LocalDateTime;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Builder
 public class ErrorResponse {
-    private String errorType;
-    private String errorCode;
-    private String errorMessage;
+
+  private String errorCode;
+
+  private String errorMessage;
+
+  private JavaException exception;
+
+  @Builder.Default
+  private LocalDateTime timeStamp = LocalDateTime.now();
+
+  @Getter
+  @Setter
+  @AllArgsConstructor
+  public static class JavaException {
+    private String exceptionMessage;
+    private String exceptionDescription;
+  }
+
 }
