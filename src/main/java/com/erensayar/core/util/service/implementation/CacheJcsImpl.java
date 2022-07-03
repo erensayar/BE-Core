@@ -4,6 +4,7 @@ import com.erensayar.core.error.exception.ExceptionConstant;
 import com.erensayar.core.error.exception.InternalServerErrorException;
 import com.erensayar.core.log.LogModel;
 import com.erensayar.core.util.service.CacheService;
+import javax.annotation.PostConstruct;
 import org.apache.commons.jcs.JCS;
 import org.apache.commons.jcs.access.CacheAccess;
 import org.apache.commons.jcs.access.exception.CacheException;
@@ -15,8 +16,8 @@ public class CacheJcsImpl<T> implements CacheService<T> {
 
   private CacheAccess<String, T> cache = null;
 
-
-  public CacheJcsImpl() {
+  @PostConstruct
+  public void init() {
     try {
       cache = JCS.getInstance("default");
     } catch (CacheException e) {
