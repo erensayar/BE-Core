@@ -14,18 +14,14 @@ public class NotFoundException extends BaseException {
         .build());
   }
 
-  public NotFoundException(final String errCode, final String errorMessage,
-      final LogModel logModel) {
-    super(errCode, errorMessage, logModel);
-  }
-
-  public NotFoundException(final String errorMessage, final LogModel logModel) {
-    super(ERROR_CODE, errorMessage, logModel);
-  }
-
   public NotFoundException(final LogModel logModel) {
-    super(logModel.getApiError().getErrorCode().toString(), logModel.getApiError().getDescription(),
-        logModel);
+    super(logModel.getApiError().getErrorCode().toString(), logModel.getApiError().getDescription(), logModel);
+  }
+
+  public NotFoundException(final ApiError apiError) {
+    super(apiError.getErrorCode().toString(), apiError.getDescription(), LogModel.builder()
+        .apiError(ApiError.of(Integer.valueOf(ERROR_CODE), apiError.getDescription()))
+        .build());
   }
 
   public NotFoundException(final String errorMessage) {
@@ -33,5 +29,4 @@ public class NotFoundException extends BaseException {
         .apiError(ApiError.of(Integer.valueOf(ERROR_CODE), errorMessage))
         .build());
   }
-
 }

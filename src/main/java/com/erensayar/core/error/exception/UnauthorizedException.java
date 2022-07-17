@@ -17,16 +17,14 @@ public class UnauthorizedException extends BaseException {
         .build());
   }
 
-  public UnauthorizedException(final String errCode, final String errorMessage, final LogModel logModel) {
-    super(errCode, errorMessage, logModel);
-  }
-
-  public UnauthorizedException(final String errorMessage, final LogModel logModel) {
-    super(ERROR_CODE, errorMessage, logModel);
-  }
-
   public UnauthorizedException(final LogModel logModel) {
     super(logModel.getApiError().getErrorCode().toString(), logModel.getApiError().getDescription(), logModel);
+  }
+
+  public UnauthorizedException(final ApiError apiError) {
+    super(apiError.getErrorCode().toString(), apiError.getDescription(), LogModel.builder()
+        .apiError(ApiError.of(Integer.valueOf(ERROR_CODE), apiError.getDescription()))
+        .build());
   }
 
   public UnauthorizedException(final String errorMessage) {
@@ -34,5 +32,4 @@ public class UnauthorizedException extends BaseException {
         .apiError(ApiError.of(Integer.valueOf(ERROR_CODE), errorMessage))
         .build());
   }
-
 }

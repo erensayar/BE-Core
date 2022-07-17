@@ -17,16 +17,14 @@ public class UnsupportedMediaTypeException extends BaseException {
         .build());
   }
 
-  public UnsupportedMediaTypeException(final String errCode, final String errorMessage, final LogModel logModel) {
-    super(errCode, errorMessage, logModel);
-  }
-
-  public UnsupportedMediaTypeException(final String errorMessage, final LogModel logModel) {
-    super(ERROR_CODE, errorMessage, logModel);
-  }
-
   public UnsupportedMediaTypeException(final LogModel logModel) {
     super(logModel.getApiError().getErrorCode().toString(), logModel.getApiError().getDescription(), logModel);
+  }
+
+  public UnsupportedMediaTypeException(final ApiError apiError) {
+    super(apiError.getErrorCode().toString(), apiError.getDescription(), LogModel.builder()
+        .apiError(ApiError.of(Integer.valueOf(ERROR_CODE), apiError.getDescription()))
+        .build());
   }
 
   public UnsupportedMediaTypeException(final String errorMessage) {

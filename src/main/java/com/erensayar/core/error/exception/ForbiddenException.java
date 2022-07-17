@@ -17,16 +17,14 @@ public class ForbiddenException extends BaseException {
         .build());
   }
 
-  public ForbiddenException(final String errCode, final String errorMessage, final LogModel logModel) {
-    super(errCode, errorMessage, logModel);
-  }
-
-  public ForbiddenException(final String errorMessage, final LogModel logModel) {
-    super(ERROR_CODE, errorMessage, logModel);
-  }
-
   public ForbiddenException(final LogModel logModel) {
     super(logModel.getApiError().getErrorCode().toString(), logModel.getApiError().getDescription(), logModel);
+  }
+
+  public ForbiddenException(final ApiError apiError) {
+    super(apiError.getErrorCode().toString(), apiError.getDescription(), LogModel.builder()
+        .apiError(ApiError.of(Integer.valueOf(ERROR_CODE), apiError.getDescription()))
+        .build());
   }
 
   public ForbiddenException(final String errorMessage) {
@@ -34,5 +32,4 @@ public class ForbiddenException extends BaseException {
         .apiError(ApiError.of(Integer.valueOf(ERROR_CODE), errorMessage))
         .build());
   }
-
 }
